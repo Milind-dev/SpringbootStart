@@ -36,17 +36,13 @@ public class ExpenseController {
 	public void deleteExpenseId(@RequestParam("id") Long id) {
 		expenseService.deleteExpenseById(id);
 	}
+//	@PostMapping("/expenses")
+//	public void saveExpenseDetails(@RequestBody Expense expense) {
+//    	System.out.println("Printing the expense details "+expense);
+//	}
+//	
 	@PostMapping("/expenses")
-	public void saveExpenseDetails(@RequestBody Expense expense) {
-//		System.out.println("Printing the expense details "+expense);
-		try {			
-			String expenseJson = objectMapper.writeValueAsString(expense); // Convert Expense object to JSON
-			System.out.println("Printing the expense details " + expenseJson); // Print JSON
-		}
-		catch (Exception e) {
-            e.printStackTrace();
-        }
-     
+	public Expense saveExpenseDetails(@RequestBody Expense expense) {
+		return expenseService.saveExpenseDetails(expense);
 	}
-	
 }
