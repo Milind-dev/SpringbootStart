@@ -22,4 +22,5 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return expenseRepo.findAll();
 	}
 	
+	
 }
