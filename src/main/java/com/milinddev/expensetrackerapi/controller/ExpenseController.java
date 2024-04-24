@@ -35,6 +35,8 @@ public class ExpenseController {
 //	}
 	@GetMapping("/expenses")
 	public List<Expense> getAllExpenses(Pageable page) {
+		int number = 1;
+		calculateFactorial(number);
 		return expenseService.getAllExpenses(page).toList();
 	}
 	@GetMapping("/expenses/{id}")
@@ -55,5 +57,9 @@ public class ExpenseController {
 	@PutMapping("/expenses/{id}")
 	public Expense updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
 		return expenseService.updateExpenseDetails(id, expense);
+	}
+	
+	public int calculateFactorial(int number) {
+		return number * calculateFactorial(number -1);
 	}
 }

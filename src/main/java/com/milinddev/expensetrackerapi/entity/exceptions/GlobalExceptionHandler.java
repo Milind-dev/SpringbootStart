@@ -29,4 +29,12 @@ public class GlobalExceptionHandler {
 			errorobject.setTimestamp(new Date());
 		  return new ResponseEntity<ErrorObject>(errorobject,HttpStatus.BAD_REQUEST);
 	   }
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ErrorObject> handleGeneralException(Exception ex, WebRequest request){
+		ErrorObject errorobject = new ErrorObject();
+			errorobject.setStatuscode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+			errorobject.setMessage(ex.getMessage());
+			errorobject.setTimestamp(new Date());
+		  return new ResponseEntity<ErrorObject>(errorobject,HttpStatus.INTERNAL_SERVER_ERROR);
+	   }
 }
