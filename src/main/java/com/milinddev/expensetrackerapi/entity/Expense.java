@@ -2,6 +2,11 @@ package com.milinddev.expensetrackerapi.entity;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +38,13 @@ public class Expense {
 	
 	@Column(name = "expense_amount")
 	private BigDecimal amount;
+	
+	@Column(name = "created_at", nullable = false, updatable = false)
+	@CreationTimestamp
+	private Timestamp createdAt;
+	@Column(name = "updated_at")
+	@UpdateTimestamp
+	private Timestamp updatedAt;
 	
 	public Long getId() {
 		return id;

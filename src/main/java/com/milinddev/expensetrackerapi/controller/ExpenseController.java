@@ -3,6 +3,7 @@ package com.milinddev.expensetrackerapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,15 +39,13 @@ public class ExpenseController {
 	public void deleteExpenseId(@RequestParam("id") Long id) {
 		expenseService.deleteExpenseById(id);
 	}
-//	@PostMapping("/expenses")
-//	public void saveExpenseDetails(@RequestBody Expense expense) {
-//    	System.out.println("Printing the expense details "+expense);
-//	}
-//	
+
+	@ResponseStatus(value=HttpStatus.CREATED)
 	@PostMapping("/expenses")
 	public Expense saveExpenseDetails(@RequestBody Expense expense) {
 		return expenseService.saveExpenseDetails(expense);
 	}
+	
 	@PutMapping("/expenses/{id}")
 	public Expense updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
 		return expenseService.updateExpenseDetails(id, expense);
