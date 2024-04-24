@@ -34,8 +34,8 @@ public class ExpenseController {
 //		return expenseService.getAllExpenses();
 //	}
 	@GetMapping("/expenses")
-	public Page<Expense> getAllExpenses(Pageable page) {
-		return expenseService.getAllExpenses(page);
+	public List<Expense> getAllExpenses(Pageable page) {
+		return expenseService.getAllExpenses(page).toList();
 	}
 	@GetMapping("/expenses/{id}")
 	public Expense getExpenseById(@PathVariable("id") Long id) {
