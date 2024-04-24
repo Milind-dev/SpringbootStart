@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.milinddev.expensetrackerapi.entity.Expense;
-import com.milinddev.expensetrackerapi.entity.exceptions.ExpenseNotFoundException;
+import com.milinddev.expensetrackerapi.entity.exceptions.ResourceNotFoundException;
 import com.milinddev.expensetrackerapi.repository.ExpenseRepository;
 
 //all business logic write on this class
@@ -39,7 +39,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 			return expense.get();
 		}
 //			throw new RuntimeException("Expense is not found");
-		throw new ExpenseNotFoundException("Expense not found for this id " + id); 
+		throw new ResourceNotFoundException("Expense  not found for this id " + id); 
 		
 	}
 
