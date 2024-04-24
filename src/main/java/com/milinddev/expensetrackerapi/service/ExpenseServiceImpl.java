@@ -1,6 +1,8 @@
 package com.milinddev.expensetrackerapi.service;
 
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 import javax.management.RuntimeErrorException;
@@ -19,10 +21,15 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Autowired
 	private ExpenseRepository expenseRepo;
 	
+//	@Override
+//	public List<Expense> getAllExpenses() {
+//		return expenseRepo.findAll();
+//	}
 	@Override
-	public List<Expense> getAllExpenses() {
-		return expenseRepo.findAll();
+	public Page<Expense> getAllExpenses(Pageable page) {
+		return expenseRepo.findAll(page);
 	}
+
 
 	@Override
 	public Expense getExpenseById(Long id) {

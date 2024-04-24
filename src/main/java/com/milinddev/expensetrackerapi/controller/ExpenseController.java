@@ -3,6 +3,8 @@ package com.milinddev.expensetrackerapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +29,13 @@ public class ExpenseController {
 	@Autowired
 	private ExpenseService expenseService;
 	
+//	@GetMapping("/expenses")
+//	public List<Expense> getAllExpenses() {
+//		return expenseService.getAllExpenses();
+//	}
 	@GetMapping("/expenses")
-	public List<Expense> getAllExpenses() {
-		return expenseService.getAllExpenses();
+	public Page<Expense> getAllExpenses(Pageable page) {
+		return expenseService.getAllExpenses(page);
 	}
 	@GetMapping("/expenses/{id}")
 	public Expense getExpenseById(@PathVariable("id") Long id) {
