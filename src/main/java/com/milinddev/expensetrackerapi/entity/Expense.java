@@ -14,7 +14,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,20 +37,33 @@ public class Expense {
 	@Column(name = "expense_name")
 	@NotNull(message="Expense name is not null")
 	@Size(min=3,message="Expense name must atlease 3 character")
+	@NotBlank(message="Expense name is not null")
 	private String name;
 	
-	
+	@NotBlank(message="Expense descriptionis not null")
 	private String description;
 	
 	@Column(name = "expense_amount")
+//	@NotBlank(message="Expense amount is not null")
 	private BigDecimal amount;
+	
+
+	@NotBlank(message="Expense Category is not null")
+	private String category;
+	
+	 @NotNull(message = "Expense Date is not null")
+	 @Past(message = "Expense date must be in the past")
+	private Date date;
 	
 	@Column(name = "created_at", nullable = false, updatable = false)
 	@CreationTimestamp
 	private Timestamp createdAt;
+	
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private Timestamp updatedAt;
+	
+	
 	
 	public Long getId() {
 		return id;
@@ -98,9 +113,6 @@ public class Expense {
 		this.date = date;
 	}
 
-	private String category;
-	
-	private Date date;
 }
 
 
