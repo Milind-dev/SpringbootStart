@@ -1,5 +1,6 @@
 package com.milinddev.expensetrackerapi.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,16 @@ public class ExpenseController {
 	public List<Expense> getExpensesByCategory(@RequestParam String category, Pageable page) {
 		return expenseService.readByCategory(category, page);
 	}
+	
+	@GetMapping("/expenses/name")
+	public List<Expense> getExpensesByName(@RequestParam String keyword, Pageable page) {
+		return expenseService.readByCategory(keyword, page);
+	}
+	
+	@GetMapping("/expense/date")
+	public List<Expense> getExpenseByDate(@RequestParam(required=false) Date startDate,@RequestParam (required = false) Date endDate, Pageable page){
+		return expenseService.readByDate(startDate, endDate, page);
+	}
+	
 
 }
