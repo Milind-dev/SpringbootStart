@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,8 @@ public class Expense {
 	private Long id;
 	
 	@Column(name = "expense_name")
-	@NotNull
+	@NotNull(message="Expense name is not null")
+	@Size(min=3,message="Expense name must atlease 3 character")
 	private String name;
 	
 	
