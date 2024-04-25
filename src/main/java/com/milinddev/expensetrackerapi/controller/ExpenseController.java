@@ -20,6 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.milinddev.expensetrackerapi.entity.Expense;
 import com.milinddev.expensetrackerapi.service.ExpenseService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class ExpenseController {
 	
@@ -48,7 +50,7 @@ public class ExpenseController {
 
 	@ResponseStatus(value=HttpStatus.CREATED)
 	@PostMapping("/expenses")
-	public Expense saveExpenseDetails(@RequestBody Expense expense) {
+	public Expense saveExpenseDetails(@Valid @RequestBody Expense expense) {
 		return expenseService.saveExpenseDetails(expense);
 	}
 	@ResponseStatus(value=HttpStatus.NO_CONTENT)
