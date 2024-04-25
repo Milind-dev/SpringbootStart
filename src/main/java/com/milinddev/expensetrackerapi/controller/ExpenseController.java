@@ -30,11 +30,7 @@ public class ExpenseController {
 
 	@Autowired
 	private ExpenseService expenseService;
-	
-//	@GetMapping("/expenses")
-//	public List<Expense> getAllExpenses() {
-//		return expenseService.getAllExpenses();
-//	}
+
 	@GetMapping("/expenses")
 	public List<Expense> getAllExpenses(Pageable page) {
 		return expenseService.getAllExpenses(page).toList();
@@ -58,6 +54,11 @@ public class ExpenseController {
 	@PutMapping("/expenses/{id}")
 	public Expense updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
 		return expenseService.updateExpenseDetails(id, expense);
+	}
+	
+	@GetMapping("/expenses/category")
+	public List<Expense> getExpensesByCategory(@RequestParam String category, Pageable page) {
+		return expenseService.readByCategory(category, page);
 	}
 
 }

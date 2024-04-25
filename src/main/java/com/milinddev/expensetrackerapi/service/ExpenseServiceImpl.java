@@ -22,10 +22,6 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Autowired
 	private ExpenseRepository expenseRepo;
 	
-//	@Override
-//	public List<Expense> getAllExpenses() {
-//		return expenseRepo.findAll();
-//	}
 	@Override
 	public Page<Expense> getAllExpenses(Pageable page) {
 		return expenseRepo.findAll(page);
@@ -38,9 +34,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		if(expense.isPresent()) {
 			return expense.get();
 		}
-//			throw new RuntimeException("Expense is not found");
 		throw new ResourceNotFoundException("Expense  not found for this id " + id); 
-		
 	}
 
 	@Override
@@ -65,6 +59,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 		existingExpense.setDate(expense.getDate() != null ? expense.getDate() : existingExpense.getDate());
 		existingExpense.setAmount(expense.getAmount() != null ? expense.getAmount() : existingExpense.getAmount());
 		return expenseRepo.save(existingExpense);
+	}
+
+
+	@Override
+	public List<Expense> readByCategory(String category, Pageable page) {
+		return  expenseRepo.findByCategory(category, page).toList();
 	}
 
 }
