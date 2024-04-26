@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,16 @@ public class User {
 	private String email;
 	
 	private String password;
+
+	private Long age;
 	
+	@Column(name = "created_at", nullable = false, updatable = false)
+	@CreationTimestamp
+	private Timestamp createdAt;
+	
+	@Column(name = "updated_at")
+	@UpdateTimestamp
+	private Timestamp updatedAt;
 	public Long getId() {
 		return id;
 	}
@@ -73,15 +83,7 @@ public class User {
 		this.age = age;
 	}
 
-	private Long age;
-	
-	@Column(name = "created_at", nullable = false, updatable = false)
-	@CreationTimestamp
-	private Timestamp createdAt;
-	
-	@Column(name = "updated_at")
-	@UpdateTimestamp
-	private Timestamp updatedAt;
+
 	
 	
 }

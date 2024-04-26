@@ -1,14 +1,22 @@
 package com.milinddev.expensetrackerapi.entity;
 
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class UserModal {
 	
+	@NotNull(message="User name should not be empty")
 	private String name;
+	@Email(message="email is not proper format")
 	private String email;
+	@NotNull(message="password is not empty")
+	@Size(min=3,message="password range more than 3")
 	private String password;
+
 	private Long age = 0L;
 
 	public String getName() {

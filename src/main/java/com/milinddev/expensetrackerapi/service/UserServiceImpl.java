@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.milinddev.expensetrackerapi.entity.User;
 import com.milinddev.expensetrackerapi.entity.UserModal;
+import com.milinddev.expensetrackerapi.entity.exceptions.ItemAlreadyExistsException;
 import com.milinddev.expensetrackerapi.repository.UserRepository;
 
 @Service
@@ -17,7 +18,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User createUser(UserModal user) {
-		// TODO Auto-generated method stub
+		if(userRepository.existsByEmail(user.getEmail())) {
+			throw new ItemAlreadyExistsException("email already exists");
+		}
 		User newUser = new User();
 		BeanUtils.copyProperties(user, newUser);
 		return userRepository.save(newUser);

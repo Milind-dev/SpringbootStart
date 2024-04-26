@@ -12,13 +12,15 @@ import com.milinddev.expensetrackerapi.entity.User;
 import com.milinddev.expensetrackerapi.entity.UserModal;
 import com.milinddev.expensetrackerapi.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class UserController {
 	@Autowired
 	private UserService userService;
 	
 	@PostMapping("/register")
-	public ResponseEntity<User> save(@RequestBody UserModal user) {
+	public ResponseEntity<User> save(@Valid @RequestBody UserModal user) {
 			return new ResponseEntity<User>(userService.createUser(user),HttpStatus.CREATED);
 	}
 }
