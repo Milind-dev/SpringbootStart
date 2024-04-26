@@ -7,5 +7,5 @@ import com.milinddev.expensetrackerapi.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-   Boolean 	existsByEmail(String email);
+    Boolean existsByEmail(String email);
 }
