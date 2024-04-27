@@ -45,6 +45,7 @@ public class webSecurityConfig extends webSecurityConfigureAdapter{ //webSecurit
 
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
+		
 	}
 
 	@Bean
