@@ -5,6 +5,7 @@ import org.springframework.security.authentication.jaas.memory.InMemoryConfigura
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -50,6 +51,8 @@ public class webSecurityConfig extends webSecurityConfigureAdapter{ //webSecurit
 
 	@Bean
 	public PasswordEncoder passwordEndEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+//		return NoOpPasswordEncoder.getInstance();
+		return new BCryptPasswordEncoder();
+		
 	}
 }
