@@ -36,6 +36,7 @@ public class webSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();    
     }
+    
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
