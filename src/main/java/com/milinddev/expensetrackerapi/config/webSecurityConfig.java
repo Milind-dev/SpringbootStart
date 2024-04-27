@@ -1,6 +1,7 @@
 package com.milinddev.expensetrackerapi.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.jaas.memory.InMemoryConfiguration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +18,7 @@ public class webSecurityConfig extends webSecurityConfigureAdapter{ //webSecurit
 	
 	
 	private CustomUserDetailsService userDetailsService;
+	private AuthenticationManager authenticationManager;
 	
 	@Overide
 	protected void configure(Httpsecurity http) throws Exception{
@@ -52,7 +54,11 @@ public class webSecurityConfig extends webSecurityConfigureAdapter{ //webSecurit
 	@Bean
 	public PasswordEncoder passwordEndEncoder() {
 //		return NoOpPasswordEncoder.getInstance();
-		return new BCryptPasswordEncoder();
-		
+		return new BCryptPasswordEncoder();	
+	}
+	@Bean
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+	
+		return super.authenticationManagerBean();
 	}
 }
