@@ -8,4 +8,6 @@ public interface UserService {
 	User readUser(Long id);
 	User updateUser(UserModal user,Long id);
 	void deleteUser(Long id);
+
+
 }

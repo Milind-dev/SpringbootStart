@@ -3,6 +3,7 @@ package com.milinddev.expensetrackerapi.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -56,4 +57,12 @@ public class UserServiceImpl implements UserService{
 		User existingUser = readUser(id);
 		userRepository.delete(existingUser);
 	}
+
+//	---------User module -----
+
+//	@Override
+//	public User getLoggedInUser() {
+//		SecurityContextHolder.getContext().getAuthentication()
+//		return null;
+//	}
 }
